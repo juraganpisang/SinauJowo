@@ -123,7 +123,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
 
-                            DBQuery.loadCategories(new MyCompleteListener() {
+                            DBQuery.loadData(new MyCompleteListener() {
                                 @Override
                                 public void onSuccess() {
 
@@ -204,7 +204,7 @@ public class LoginActivity extends AppCompatActivity {
                                     @Override
                                     public void onSuccess() {
 
-                                        DBQuery.loadCategories(new MyCompleteListener() {
+                                        DBQuery.loadData(new MyCompleteListener() {
                                             @Override
                                             public void onSuccess() {
 
@@ -235,7 +235,7 @@ public class LoginActivity extends AppCompatActivity {
                                     }
                                 });
                             }else{
-                                DBQuery.loadCategories(new MyCompleteListener() {
+                                DBQuery.loadData(new MyCompleteListener() {
                                     @Override
                                     public void onSuccess() {
                                         progressDialog.dismiss();

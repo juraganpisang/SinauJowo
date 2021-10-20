@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/DATA/Projek/SinauJowo/app/src/main/res/drawable/button_border.xml" value="0.22205128205128205" />
+        <entry key="..\:/DATA/Projek/SinauJowo/app/src/main/res/drawable/circle.xml" value="0.22205128205128205" />
         <entry key="..\:/DATA/Projek/SinauJowo/app/src/main/res/drawable/gradient_background.xml" value="0.22552083333333334" />
         <entry key="..\:/DATA/Projek/SinauJowo/app/src/main/res/drawable/main_background.xml" value="0.15" />
         <entry key="..\:/DATA/Projek/SinauJowo/app/src/main/res/drawable/round_background.xml" value="0.2074074074074074" />
@@ -10,12 +12,13 @@
         <entry key="..\:/DATA/Projek/SinauJowo/app/src/main/res/drawable/side_nav_bar.xml" value="0.2074074074074074" />
         <entry key="..\:/DATA/Projek/SinauJowo/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/DATA/Projek/SinauJowo/app/src/main/res/layout/activity_main.xml" value="0.209375" />
+        <entry key="..\:/DATA/Projek/SinauJowo/app/src/main/res/layout/activity_questions.xml" value="0.2" />
         <entry key="..\:/DATA/Projek/SinauJowo/app/src/main/res/layout/activity_sign_up.xml" value="0.18" />
         <entry key="..\:/DATA/Projek/SinauJowo/app/src/main/res/layout/activity_splash.xml" value="0.14" />
         <entry key="..\:/DATA/Projek/SinauJowo/app/src/main/res/layout/activity_test.xml" value="0.16494845360824742" />
         <entry key="..\:/DATA/Projek/SinauJowo/app/src/main/res/layout/app_bar_main.xml" value="0.13179347826086957" />
         <entry key="..\:/DATA/Projek/SinauJowo/app/src/main/res/layout/cat_item_layout.xml" value="0.21" />
-        <entry key="..\:/DATA/Projek/SinauJowo/app/src/main/res/layout/content_main.xml" value="0.25" />
+        <entry key="..\:/DATA/Projek/SinauJowo/app/src/main/res/layout/content_main.xml" value="0.16" />
         <entry key="..\:/DATA/Projek/SinauJowo/app/src/main/res/layout/dialog_layout.xml" value="0.33" />
         <entry key="..\:/DATA/Projek/SinauJowo/app/src/main/res/layout/fragment_account.xml" value="0.18" />
         <entry key="..\:/DATA/Projek/SinauJowo/app/src/main/res/layout/fragment_category.xml" value="0.13179347826086957" />
@@ -23,7 +26,7 @@
         <entry key="..\:/DATA/Projek/SinauJowo/app/src/main/res/layout/fragment_home.xml" value="0.209375" />
         <entry key="..\:/DATA/Projek/SinauJowo/app/src/main/res/layout/fragment_leader_board.xml" value="0.15760869565217392" />
         <entry key="..\:/DATA/Projek/SinauJowo/app/src/main/res/layout/fragment_slideshow.xml" value="0.209375" />
-        <entry key="..\:/DATA/Projek/SinauJowo/app/src/main/res/layout/nav_header_main.xml" value="0.209375" />
+        <entry key="..\:/DATA/Projek/SinauJowo/app/src/main/res/layout/nav_header_main.xml" value="0.2" />
         <entry key="..\:/DATA/Projek/SinauJowo/app/src/main/res/layout/test_item_layout.xml" value="0.15" />
         <entry key="..\:/DATA/Projek/SinauJowo/app/src/main/res/menu/activity_main_drawer.xml" value="0.209375" />
         <entry key="..\:/DATA/Projek/SinauJowo/app/src/main/res/menu/bottom_menu.xml" value="0.13148148148148148" />

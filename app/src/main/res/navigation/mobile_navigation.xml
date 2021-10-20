@@ -7,19 +7,31 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.juraganpisang.sinaujowo.ui.home.HomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        android:name="com.juraganpisang.sinaujowo.CategoryFragment"
+        android:label="Nggriyo"
+        tools:layout="@layout/fragment_category" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.juraganpisang.sinaujowo.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_leaderboard"
+        android:name="com.juraganpisang.sinaujowo.LeaderBoardFragment"
+        android:label="Pangkat"
+        tools:layout="@layout/fragment_leader_board" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.juraganpisang.sinaujowo.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_account"
+        android:name="com.juraganpisang.sinaujowo.AccountFragment"
+        android:label="Akun"
+        tools:layout="@layout/fragment_account" />
+
+    <fragment
+        android:id="@+id/nav_about"
+        android:name="com.juraganpisang.sinaujowo.AboutFragment"
+        android:label="Penjelasan"
+        tools:layout="@layout/fragment_about" />
+
+    <fragment
+        android:id="@+id/nav_share"
+        android:name="com.juraganpisang.sinaujowo.AboutFragment"
+        android:label="Bagino"
+        tools:layout="@layout/fragment_about" />
 </navigation>

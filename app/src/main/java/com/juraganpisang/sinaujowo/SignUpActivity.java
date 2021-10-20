@@ -120,7 +120,7 @@ public class SignUpActivity extends AppCompatActivity {
                                 @Override
                                 public void onSuccess() {
 
-                                    DBQuery.loadCategories(new MyCompleteListener() {
+                                    DBQuery.loadData(new MyCompleteListener() {
                                         @Override
                                         public void onSuccess() {
 

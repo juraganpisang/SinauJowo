@@ -20,8 +20,8 @@
 <!--            android:scaleType="fitStart"-->
 <!--            android:src="@drawable/back_1" />-->
 
-        <fragment
-            android:id="@+id/nav_host_fragment_content_main"
+        <FrameLayout
+            android:id="@+id/main_frame"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

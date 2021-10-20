@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/nav_home"
+        android:id="@+id/nav_home_bottom"
         android:icon="@drawable/ic_home"
-        android:title="Home"/>
+        android:title="Nggriyo"/>
 
     <item
-        android:id="@+id/nav_leaderboard"
+        android:id="@+id/nav_leaderboard_bottom"
         android:icon="@drawable/ic_leaderboard"
-        android:title="Leaderboard"/>
+        android:title="Pangkat"/>
 
     <item
-        android:id="@+id/nav_account"
+        android:id="@+id/nav_account_bottom"
         android:icon="@drawable/ic_account"
-        android:title="Account"/>
+        android:title="Akun"/>
 
 </menu>

@@ -17,6 +17,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.juraganpisang.sinaujowo.databinding.FragmentAccountBinding;
+import com.juraganpisang.sinaujowo.databinding.FragmentCategoryBinding;
 
 public class AccountFragment extends Fragment {
 
@@ -28,7 +30,7 @@ public class AccountFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+//         Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_account, container, false);
 
         logoutBtn = view.findViewById(R.id.logoutBtn);
@@ -60,5 +62,10 @@ public class AccountFragment extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
     }
 }
