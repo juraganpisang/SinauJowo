@@ -28,21 +28,24 @@ public class DBQuery {
     public static int g_selected_cat_index = 0;
 
     public static List<TestModel> g_testModelList = new ArrayList<>();
+    public static int g_selected_test_index = 0;
+
+    public static List<QuestionModel> g_questList = new ArrayList<>();
 
     public static ProfileModel myProfile = new ProfileModel("NA", null);
 
-    public static void createUserData(String email, String name, MyCompleteListener completeListener){
+    public static void createUserData(String email, String name, MyCompleteListener completeListener) {
         Map<String, Object> userData = new ArrayMap<>();
 
         userData.put("EMAIL_ID", email);
         userData.put("NAME", name);
-        userData.put("TOTAL_SCORE",0);
+        userData.put("TOTAL_SCORE", 0);
 
         DocumentReference userDoc = g_firestore.collection("USERS").document(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
         WriteBatch batch = g_firestore.batch();
 
-        batch.set(userDoc,userData);
+        batch.set(userDoc, userData);
 
         DocumentReference countDoc = g_firestore.collection("USERS").document("TOTAL_USERS");
         batch.update(countDoc, "COUNT", FieldValue.increment(1));
@@ -66,17 +69,17 @@ public class DBQuery {
                 });
     }
 
-    public static void getUserData(MyCompleteListener completeListener){
+    public static void getUserData(MyCompleteListener completeListener) {
         g_firestore.collection("USERS").document(FirebaseAuth.getInstance().getUid())
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
 
-                       myProfile.setName(documentSnapshot.getString("NAME"));
-                       myProfile.setEmail(documentSnapshot.getString("EMAIL_ID"));
+                        myProfile.setName(documentSnapshot.getString("NAME"));
+                        myProfile.setEmail(documentSnapshot.getString("EMAIL_ID"));
 
-                       completeListener.onSuccess();
+                        completeListener.onSuccess();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -87,7 +90,7 @@ public class DBQuery {
         });
     }
 
-    public static void loadCategories(MyCompleteListener completeListener){
+    public static void loadCategories(MyCompleteListener completeListener) {
         g_categoryModelList.clear();
 
         g_firestore.collection("QUIZ").get()
@@ -96,7 +99,7 @@ public class DBQuery {
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         Map<String, QueryDocumentSnapshot> docList = new ArrayMap<>();
 
-                        for(QueryDocumentSnapshot doc : queryDocumentSnapshots){
+                        for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
                             docList.put(doc.getId(), doc);
                         }
 
@@ -104,8 +107,8 @@ public class DBQuery {
 
                         long catCount = catListDooc.getLong("COUNT");
 
-                        for(int i = 1; i <= catCount; i++){
-                            String catID = catListDooc.getString("CAT"+String.valueOf(i)+"_ID");
+                        for (int i = 1; i <= catCount; i++) {
+                            String catID = catListDooc.getString("CAT" + String.valueOf(i) + "_ID");
 
                             QueryDocumentSnapshot catDoc = docList.get(catID);
 
@@ -126,7 +129,42 @@ public class DBQuery {
                 });
     }
 
-    public static void loadTestData(MyCompleteListener completeListener){
+    public static void loadQuestions(MyCompleteListener completeListener) {
+        g_questList.clear();
+        g_firestore.collection("Questions")
+                .whereEqualTo("CATEGORY", g_categoryModelList.get(g_selected_cat_index).getDocID())
+                .whereEqualTo("TEST", g_testModelList.get(g_selected_test_index).getTestID())
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for (DocumentSnapshot doc : queryDocumentSnapshots) {
+
+                            g_questList.add(new QuestionModel(
+                                    doc.getString("QUESTION"),
+                                    doc.getString("A"),
+                                    doc.getString("B"),
+                                    doc.getString("C"),
+                                    doc.getString("D"),
+                                    doc.getLong("ANSWER").intValue(),
+                                    -1
+                            ));
+                        }
+
+                        completeListener.onSuccess();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                        completeListener.onFailure();
+
+                    }
+                });
+    }
+
+    public static void loadTestData(MyCompleteListener completeListener) {
         g_testModelList.clear();
 
         g_firestore.collection("QUIZ").document(g_categoryModelList.get(g_selected_cat_index).getDocID())
@@ -138,11 +176,11 @@ public class DBQuery {
 
                         int noOfTests = g_categoryModelList.get(g_selected_cat_index).getNoOfTests();
 
-                        for(int i = 1; i<=noOfTests; i++){
+                        for (int i = 1; i <= noOfTests; i++) {
                             g_testModelList.add(new TestModel(
-                                    documentSnapshot.getString("TEST"+String.valueOf(i)+"_ID"),
+                                    documentSnapshot.getString("TEST" + String.valueOf(i) + "_ID"),
                                     0,
-                                    documentSnapshot.getLong("TEST"+String.valueOf(i)+"_TIME").intValue()
+                                    documentSnapshot.getLong("TEST" + String.valueOf(i) + "_TIME").intValue()
                             ));
                         }
 
@@ -157,7 +195,7 @@ public class DBQuery {
                 });
     }
 
-    public static void loadData(MyCompleteListener completeListener){
+    public static void loadData(MyCompleteListener completeListener) {
         loadCategories(new MyCompleteListener() {
             @Override
             public void onSuccess() {

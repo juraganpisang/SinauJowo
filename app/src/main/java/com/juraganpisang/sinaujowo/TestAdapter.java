@@ -24,7 +24,7 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
     @Override
     public TestAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.test_item_layout, parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.test_item_layout, parent, false);
 
         return new ViewHolder(view);
     }
@@ -53,20 +53,24 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
             topScore = itemView.findViewById(R.id.scoreTv);
             progressBar = itemView.findViewById(R.id.testProgressBar);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(itemView.getContext(), QuestionsActivity.class);
-                    itemView.getContext().startActivity(intent);
-                }
-            });
         }
 
-        private void setData(int pos, int progress){
-            testNo.setText("Test No : "+ String.valueOf(pos+1));
+        private void setData(int pos, int progress) {
+            testNo.setText("Test No : " + String.valueOf(pos + 1));
             topScore.setText(String.valueOf(progress) + "%");
 
             progressBar.setProgress(progress);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    DBQuery.g_selected_test_index = pos;
+
+                    Intent intent = new Intent(itemView.getContext(), StartTestActivity.class);
+                    itemView.getContext().startActivity(intent);
+                }
+            });
         }
     }
 }

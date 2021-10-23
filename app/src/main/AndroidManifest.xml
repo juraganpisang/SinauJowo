@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SinauJowo">
         <activity
+            android:name=".StartTestActivity"
+            android:exported="true" />
+        <activity
             android:name=".QuestionsActivity"
             android:exported="true" />
         <activity
