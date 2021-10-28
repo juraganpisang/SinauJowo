@@ -1,5 +1,10 @@
 package com.juraganpisang.sinaujowo;
 
+import static com.juraganpisang.sinaujowo.DBQuery.ANSWERED;
+import static com.juraganpisang.sinaujowo.DBQuery.REVIEW;
+import static com.juraganpisang.sinaujowo.DBQuery.UNANSWERED;
+import static com.juraganpisang.sinaujowo.DBQuery.g_questList;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -101,11 +106,15 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.View
                 btn.setBackgroundResource(R.drawable.selected_btn);
                 DBQuery.g_questList.get(questID).setSelectedAns(option_num);
 
+                changeStatus(questID, ANSWERED);
+
                 prevSelectedB = btn;
             }else{
                 if(prevSelectedB.getId() == btn.getId()){
                     btn.setBackgroundResource(R.drawable.selected_btn);
                     DBQuery.g_questList.get(questID).setSelectedAns(-1);
+
+                    changeStatus(questID, UNANSWERED);
 
                     prevSelectedB = null;
                 }else{
@@ -114,8 +123,15 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.View
 
                     DBQuery.g_questList.get(questID).setSelectedAns(option_num);
 
+                    changeStatus(questID, ANSWERED);
                     prevSelectedB = btn;
                 }
+            }
+        }
+
+        private void changeStatus(int id, int status) {
+            if(g_questList.get(id).getStatus() != REVIEW){
+                g_questList.get(id).setStatus(status);
             }
         }
 

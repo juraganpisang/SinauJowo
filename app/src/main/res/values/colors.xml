@@ -12,4 +12,7 @@
     <color name="colorAccent">#000</color>
     <color name="main_background">#E1EDFD</color>
     <color name="red">#FF0000</color>
+    <color name="grey">#AAAAAA</color>
+    <color name="green">#009688</color>
+    <color name="purple">#9C27B0</color>
 </resources>

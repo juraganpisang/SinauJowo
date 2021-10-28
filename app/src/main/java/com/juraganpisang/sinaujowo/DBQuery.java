@@ -34,6 +34,11 @@ public class DBQuery {
 
     public static ProfileModel myProfile = new ProfileModel("NA", null);
 
+    public static final int NOT_VISITED = 0;
+    public static final int UNANSWERED = 1;
+    public static final int ANSWERED = 2;
+    public static final int REVIEW = 3;
+
     public static void createUserData(String email, String name, MyCompleteListener completeListener) {
         Map<String, Object> userData = new ArrayMap<>();
 
@@ -147,7 +152,8 @@ public class DBQuery {
                                     doc.getString("C"),
                                     doc.getString("D"),
                                     doc.getLong("ANSWER").intValue(),
-                                    -1
+                                    -1,
+                                    NOT_VISITED
                             ));
                         }
 
