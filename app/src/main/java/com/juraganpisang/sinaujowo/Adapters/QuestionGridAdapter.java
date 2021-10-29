@@ -1,4 +1,4 @@
-package com.juraganpisang.sinaujowo;
+package com.juraganpisang.sinaujowo.Adapters;
 
 import static com.juraganpisang.sinaujowo.DBQuery.ANSWERED;
 import static com.juraganpisang.sinaujowo.DBQuery.NOT_VISITED;
@@ -14,6 +14,10 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
+
+import com.juraganpisang.sinaujowo.DBQuery;
+import com.juraganpisang.sinaujowo.QuestionsActivity;
+import com.juraganpisang.sinaujowo.R;
 
 public class QuestionGridAdapter extends BaseAdapter {
 

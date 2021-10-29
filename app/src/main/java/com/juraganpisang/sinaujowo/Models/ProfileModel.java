@@ -1,4 +1,4 @@
-package com.juraganpisang.sinaujowo;
+package com.juraganpisang.sinaujowo.Models;
 
 public class ProfileModel {
 

@@ -13,8 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.juraganpisang.sinaujowo.Adapters.TestAdapter;
 
 public class TestActivity extends AppCompatActivity {
 
@@ -58,10 +57,25 @@ public class TestActivity extends AppCompatActivity {
             @Override
             public void onSuccess() {
 
-                progressDialog.dismiss();
+                DBQuery.loadMyScores(new MyCompleteListener() {
+                    @Override
+                    public void onSuccess() {
 
-                adapter = new TestAdapter(DBQuery.g_testModelList);
-                testView.setAdapter(adapter);
+                        progressDialog.dismiss();
+
+                        adapter = new TestAdapter(DBQuery.g_testModelList);
+                        testView.setAdapter(adapter);
+                    }
+
+                    @Override
+                    public void onFailure() {
+                        progressDialog.dismiss();
+                        // If sign in fails, display a message to the user.
+                        Toast.makeText(TestActivity.this, "Ngapunten, Enten sing Mboten Beres",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
+
             }
 
             @Override
@@ -69,14 +83,13 @@ public class TestActivity extends AppCompatActivity {
 
                 progressDialog.dismiss();
                 // If sign in fails, display a message to the user.
-                Toast.makeText(TestActivity.this, "Ngapunten, Enten sing Salah",
+                Toast.makeText(TestActivity.this, "Ngapunten, Enten sing Mboten Beres",
                         Toast.LENGTH_SHORT).show();
             }
         });
 
 
     }
-
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

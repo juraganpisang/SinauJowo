@@ -1,4 +1,4 @@
-package com.juraganpisang.sinaujowo;
+package com.juraganpisang.sinaujowo.Adapters;
 
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -6,6 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.juraganpisang.sinaujowo.DBQuery;
+import com.juraganpisang.sinaujowo.Models.CategoryModel;
+import com.juraganpisang.sinaujowo.R;
+import com.juraganpisang.sinaujowo.TestActivity;
 
 import java.util.List;
 

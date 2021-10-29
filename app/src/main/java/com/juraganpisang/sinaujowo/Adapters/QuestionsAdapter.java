@@ -1,4 +1,4 @@
-package com.juraganpisang.sinaujowo;
+package com.juraganpisang.sinaujowo.Adapters;
 
 import static com.juraganpisang.sinaujowo.DBQuery.ANSWERED;
 import static com.juraganpisang.sinaujowo.DBQuery.REVIEW;
@@ -13,6 +13,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.juraganpisang.sinaujowo.DBQuery;
+import com.juraganpisang.sinaujowo.Models.QuestionModel;
+import com.juraganpisang.sinaujowo.R;
 
 import java.util.List;
 

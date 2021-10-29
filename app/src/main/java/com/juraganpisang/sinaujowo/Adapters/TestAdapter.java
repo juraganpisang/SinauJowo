@@ -1,4 +1,4 @@
-package com.juraganpisang.sinaujowo;
+package com.juraganpisang.sinaujowo.Adapters;
 
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -9,6 +9,11 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.juraganpisang.sinaujowo.DBQuery;
+import com.juraganpisang.sinaujowo.Models.TestModel;
+import com.juraganpisang.sinaujowo.R;
+import com.juraganpisang.sinaujowo.StartTestActivity;
 
 import java.util.List;
 

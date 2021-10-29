@@ -23,13 +23,15 @@ import androidx.recyclerview.widget.SnapHelper;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.juraganpisang.sinaujowo.Adapters.QuestionGridAdapter;
+import com.juraganpisang.sinaujowo.Adapters.QuestionsAdapter;
 
 import java.util.concurrent.TimeUnit;
 
@@ -46,6 +48,7 @@ public class QuestionsActivity extends AppCompatActivity {
     private GridView questListGV;
     private QuestionGridAdapter gridAdapter;
     private CountDownTimer timer;
+    private long timeLeft;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -230,6 +233,8 @@ public class QuestionsActivity extends AppCompatActivity {
                 alertDialog.dismiss();
 
                 Intent intent = new Intent(QuestionsActivity.this, ScoreActivity.class);
+                long totalTime = g_testModelList.get(g_selected_test_index).getTime()*60*1000;
+                intent.putExtra("TIME_TAKEN", totalTime - timeLeft);
                 startActivity(intent);
                 QuestionsActivity.this.finish();
             }
@@ -252,6 +257,9 @@ public class QuestionsActivity extends AppCompatActivity {
         timer = new CountDownTimer(totalTime + 1000, 1000) {
             @Override
             public void onTick(long remaining) {
+
+                timeLeft = remaining;
+
                 String time = String.format("%02d:%02d min",
                         TimeUnit.MILLISECONDS.toMinutes(remaining),
                         TimeUnit.MILLISECONDS.toSeconds(remaining) -
@@ -264,6 +272,8 @@ public class QuestionsActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 Intent intent = new Intent(QuestionsActivity.this, ScoreActivity.class);
+                long totalTime = g_testModelList.get(g_selected_test_index).getTime()*60*1000;
+                intent.putExtra("TIME_TAKEN", totalTime - timeLeft);
                 startActivity(intent);
                 QuestionsActivity.this.finish();
             }
