@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SinauJowo">
         <activity
+            android:name=".MyProfileActivity"
+            android:exported="true" />
+        <activity
             android:name=".ScoreActivity"
             android:exported="true" />
         <activity

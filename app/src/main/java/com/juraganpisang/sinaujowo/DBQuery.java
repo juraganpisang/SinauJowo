@@ -38,7 +38,7 @@ public class DBQuery {
 
     public static List<QuestionModel> g_questList = new ArrayList<>();
 
-    public static ProfileModel myProfile = new ProfileModel("NA", null);
+    public static ProfileModel myProfile = new ProfileModel("NA", null, null);
     public static RankModel myPerfomance = new RankModel(0,-1);
 
     public static final int NOT_VISITED = 0;
@@ -81,6 +81,38 @@ public class DBQuery {
                 });
     }
 
+    public static void saveProfileData(String name, String phone, MyCompleteListener completeListener){
+        Map<String, Object> profileData = new ArrayMap<>();
+
+        profileData.put("NAME", name);
+
+        if(phone != null){
+            profileData.put("PHONE", phone);
+        }
+
+        g_firestore.collection("USERS").document(FirebaseAuth.getInstance().getUid())
+                .update(profileData)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+
+                        myProfile.setName(name);
+
+                        if(phone != null){
+                            myProfile.setPhone(phone);
+                        }
+
+                        completeListener.onSuccess();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        completeListener.onFailure();
+                    }
+                });
+    }
+
     public static void getUserData(MyCompleteListener completeListener) {
         g_firestore.collection("USERS").document(FirebaseAuth.getInstance().getUid())
                 .get()
@@ -90,6 +122,10 @@ public class DBQuery {
 
                         myProfile.setName(documentSnapshot.getString("NAME"));
                         myProfile.setEmail(documentSnapshot.getString("EMAIL_ID"));
+
+                        if(documentSnapshot.getString("PHONE") != null){
+                            myProfile.setPhone(documentSnapshot.getString("PHONE"));
+                        }
 
                         myPerfomance.setScore(documentSnapshot.getLong("TOTAL_SCORE").intValue());
 
