@@ -133,7 +133,8 @@ public class AccountFragment extends Fragment {
         bookmarkB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(getContext(), BookmarkActivity.class);
+                startActivity(intent);
             }
         });
 

@@ -3,6 +3,8 @@ package com.juraganpisang.sinaujowo;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -11,8 +13,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.juraganpisang.sinaujowo.Models.QuestionModel;
 
 import java.util.concurrent.TimeUnit;
 
@@ -25,11 +31,14 @@ public class ScoreActivity extends AppCompatActivity {
     private Dialog progressDialog;
     private TextView dialogText;
     private int finalScore;
+    FrameLayout main_frame;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
+
+        main_frame = findViewById(R.id.main_frame);
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -51,6 +60,8 @@ public class ScoreActivity extends AppCompatActivity {
 
         loadData();
 
+        setBookMarks();
+
         leaderB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,7 +79,8 @@ public class ScoreActivity extends AppCompatActivity {
         viewAnsB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(ScoreActivity.this, AnswerActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -147,6 +159,28 @@ public class ScoreActivity extends AppCompatActivity {
                 progressDialog.dismiss();
             }
         });
+    }
+
+    private void setBookMarks(){
+        for(int i = 0; i < DBQuery.g_questList.size(); i++){
+
+            QuestionModel question = DBQuery.g_questList.get(i);
+
+            if(question.isBookmarked()){
+
+                if(! DBQuery.g_bmIdList.contains(question.getqID())){
+                    DBQuery.g_bmIdList.add(question.getqID());
+                    DBQuery.myProfile.setBookmarksCount(DBQuery.g_bmIdList.size());
+                }
+
+            }else{
+
+                if(DBQuery.g_bmIdList.contains(question.getqID())){
+                    DBQuery.g_bmIdList.remove(question.getqID());
+                    DBQuery.myProfile.setBookmarksCount(DBQuery.g_bmIdList.size());
+                }
+            }
+        }
     }
 
     @Override

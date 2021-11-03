@@ -41,7 +41,7 @@ public class QuestionsActivity extends AppCompatActivity {
     private TextView tvQuestID, timerTV, catNameTV;
     private Button submitB, markB, clearSelB;
     private ImageButton prevQuestB, nextQuestB, closeDrawerB;
-    private ImageView questListB, markImage;
+    private ImageView questListB, markImage, bookmarkB;
     private int questID;
     private QuestionsAdapter questionsAdapter;
     private DrawerLayout drawerLayout;
@@ -88,6 +88,7 @@ public class QuestionsActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawer_layout);
         closeDrawerB = findViewById(R.id.drawerCloseB);
         markImage = findViewById(R.id.mark_image);
+        bookmarkB = findViewById(R.id.qa_bookmarkB);
         questListGV = findViewById(R.id.quest_list_gv);
 
         questID = 0;
@@ -96,6 +97,12 @@ public class QuestionsActivity extends AppCompatActivity {
         catNameTV.setText(g_categoryModelList.get(g_selected_cat_index).getName());
 
         g_questList.get(0).setStatus(UNANSWERED);
+
+        if(g_questList.get(0).isBookmarked()){
+            bookmarkB.setImageResource(R.drawable.ic_bookmark_selected);
+        }else{
+            bookmarkB.setImageResource(R.drawable.ic_bookmark);
+        }
     }
 
     private void setSnapHelper(){
@@ -121,6 +128,12 @@ public class QuestionsActivity extends AppCompatActivity {
                 }
 
                 tvQuestID.setText(String.valueOf(questID + 1) + "/"+ String.valueOf(g_questList.size()));
+
+                if(g_questList.get(questID).isBookmarked()){
+                    bookmarkB.setImageResource(R.drawable.ic_bookmark_selected);
+                }else{
+                    bookmarkB.setImageResource(R.drawable.ic_bookmark);
+                }
             }
 
             @Override
@@ -204,6 +217,13 @@ public class QuestionsActivity extends AppCompatActivity {
              submitTest();
          }
      });
+
+     bookmarkB.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View view) {
+             addToBookmark();
+         }
+     });
     }
 
     private void submitTest(){
@@ -280,5 +300,16 @@ public class QuestionsActivity extends AppCompatActivity {
         };
 
         timer.start();
+    }
+
+    private void addToBookmark(){
+
+        if(g_questList.get(questID).isBookmarked()){
+            g_questList.get(questID).setBookmarked(false);
+            bookmarkB.setImageResource(R.drawable.ic_bookmark);
+        }else{
+            g_questList.get(questID).setBookmarked(true);
+            bookmarkB.setImageResource(R.drawable.ic_bookmark_selected);
+        }
     }
 }

@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SinauJowo">
         <activity
+            android:name=".BookmarkActivity"
+            android:exported="true" />
+        <activity
+            android:name=".AnswerActivity"
+            android:exported="true" />
+        <activity
             android:name=".MyProfileActivity"
             android:exported="true" />
         <activity
