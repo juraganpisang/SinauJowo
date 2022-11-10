@@ -4,19 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_background"
+    android:background="@drawable/sb_splashscreen"
     tools:context=".SplashActivity">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center">
-
-        <ImageView
-            android:id="@+id/app_logoIv"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            app:srcCompat="@drawable/app_logo"
-            android:padding="60dp"/>
-    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
